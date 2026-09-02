@@ -20,10 +20,7 @@ def seed_database():
     print("Initializing Supabase PostgreSQL database tables...")
     Base.metadata.create_all(bind=engine)
 
-    # Ensure is_active column exists on profiles table
-    with engine.connect() as conn:
-        conn.execute(text("ALTER TABLE profiles ADD COLUMN IF NOT EXISTS is_active BOOLEAN DEFAULT TRUE NOT NULL;"))
-        conn.commit()
+
 
     db = SessionLocal()
 
