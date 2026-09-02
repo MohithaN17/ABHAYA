@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from textblob import TextBlob
+from fastapi import FastAPI, Form, Response
 
 app = FastAPI()
 
@@ -51,3 +52,11 @@ def register_case(case: CaseRegisterRequest):
             "case_type": case.case_type
         }
     }
+
+@app.post("/ivrs/call-handler")
+def ivrs_call_handler(From: str = Form(...), Body: str = Form(default="Emergency distress call")):
+    response_twiml = f"""<Response>
+        <Say>Abhaya emergency response system activated. We have received your call from {From}. Help is being dispatched.</Say>
+        <Record maxLength="30" action="/ivrs/recording-callback" method="POST"/>
+    </Response>"""
+    return Response(content=response_twiml, media_type="application/xml")
