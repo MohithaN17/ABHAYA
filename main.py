@@ -1,9 +1,19 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from textblob import TextBlob
 from fastapi import FastAPI, Form, Response
 
-app = FastAPI()
+app = FastAPI(title="Abhaya Backend", version="1.0")
+
+# Enable CORS for frontend applications (Flutter & Web Dashboard)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class SentimentRequest(BaseModel):
     text: str
@@ -24,7 +34,7 @@ def analyze_distress(payload: SentimentRequest):
     analysis = TextBlob(payload.text)
     polarity = analysis.sentiment.polarity
 
-    emergency_keywords = ["danger", "scared", "terrified", "help", "unsafe", "threat"]
+    emergency_keywords = ["danger", "scared", "terrified", "help", "unsafe", "threat", "attack"]
     has_emergency_keyword = any(keyword in text_lower for keyword in emergency_keywords)
 
     status = "Stable"
@@ -41,7 +51,6 @@ def analyze_distress(payload: SentimentRequest):
 
 @app.post("/cases/register")
 def register_case(case: CaseRegisterRequest):
-    # Placeholder logic to simulate saving the police case record
     return {
         "status": "Success",
         "message": f"Case {case.case_id} for {case.victim_name} registered successfully.",
