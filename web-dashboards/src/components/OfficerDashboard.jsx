@@ -4,7 +4,6 @@ export default function OfficerDashboard() {
   const [activeTab, setActiveTab] = useState('cases'); // 'cases', 'register', 'analytics'
   const [geoLevel, setGeoLevel] = useState('national'); // 'national', 'state', 'district'
 
-  // Mock Onboarding Form State
   const [formData, setFormData] = useState({
     firNumber: '',
     caseType: 'Harassment',
@@ -55,7 +54,6 @@ export default function OfficerDashboard() {
     setActiveTab('cases');
   };
 
-  // Hierarchical Analytics Data (Correction #4: National -> State -> District)
   const analyticsData = {
     national: {
       label: 'National Overview (All India)',
@@ -91,9 +89,9 @@ export default function OfficerDashboard() {
       <div className="bg-white p-4 rounded-xl shadow-sm flex justify-between items-center mb-6 border border-slate-200">
         <div>
           <span className="text-xs font-bold uppercase tracking-wider text-blue-800 bg-blue-100 px-2 py-1 rounded">
-            Government of Karnataka • Police Command Portal[cite: 1]
+            Government of Karnataka • Police Command Portal
           </span>
-          <h1 className="text-2xl font-bold text-slate-800 mt-1">Station Dashboard - Vijayanagar Police Station[cite: 1]</h1>
+          <h1 className="text-2xl font-bold text-slate-800 mt-1">Station Dashboard - Vijayanagar Police Station</h1>
         </div>
         <div className="flex gap-2">
           <button
@@ -106,7 +104,7 @@ export default function OfficerDashboard() {
             onClick={() => setActiveTab('register')}
             className={`px-4 py-2 text-sm font-semibold rounded-lg ${activeTab === 'register' ? 'bg-blue-900 text-white' : 'bg-slate-100 text-slate-700'}`}
           >
-            + Register New Case[cite: 1]
+            + Register New Case
           </button>
           <button
             onClick={() => setActiveTab('analytics')}
@@ -121,19 +119,19 @@ export default function OfficerDashboard() {
       {activeTab === 'cases' && (
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
           <div className="p-4 border-b border-slate-200 flex justify-between items-center">
-            <h2 className="text-lg font-bold text-slate-800">Active Case Records[cite: 1]</h2>
-            <span className="text-xs text-slate-500 font-medium">Privacy Guard: Raw victim interaction & psychological chat transcripts are restricted from officer view[cite: 1].</span>
+            <h2 className="text-lg font-bold text-slate-800">Active Case Records</h2>
+            <span className="text-xs text-slate-500 font-medium">Privacy Guard: Raw victim interaction & psychological check-in transcripts are restricted from officer view.</span>
           </div>
           <table className="w-full text-left text-sm text-slate-600">
             <thead className="bg-slate-100 text-xs uppercase font-semibold text-slate-700">
               <tr>
-                <th className="p-3">Case ID[cite: 1]</th>
+                <th className="p-3">Case ID</th>
                 <th className="p-3">Victim Name</th>
-                <th className="p-3">FIR Number[cite: 1]</th>
-                <th className="p-3">Case Type[cite: 1]</th>
-                <th className="p-3">Case Status[cite: 1]</th>
-                <th className="p-3">Well-being Status[cite: 1]</th>
-                <th className="p-3">Device[cite: 1]</th>
+                <th className="p-3">FIR Number</th>
+                <th className="p-3">Case Type</th>
+                <th className="p-3">Case Status</th>
+                <th className="p-3">Well-being Status</th>
+                <th className="p-3">Device Mode</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200">
@@ -162,10 +160,10 @@ export default function OfficerDashboard() {
       {/* TAB 2: REGISTER NEW CASE */}
       {activeTab === 'register' && (
         <div className="max-w-2xl mx-auto bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-          <h2 className="text-xl font-bold text-slate-800 mb-4">Register Victim & Initiate Support Case[cite: 1]</h2>
+          <h2 className="text-xl font-bold text-slate-800 mb-4">Register Victim & Initiate Support Case</h2>
           <form onSubmit={handleRegister} className="space-y-4">
             <div>
-              <label className="block text-xs font-bold uppercase text-slate-600 mb-1">FIR / Complaint Number[cite: 1]</label>
+              <label className="block text-xs font-bold uppercase text-slate-600 mb-1">FIR / Complaint Number</label>
               <input
                 type="text"
                 required
@@ -177,21 +175,21 @@ export default function OfficerDashboard() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold uppercase text-slate-600 mb-1">Case Type[cite: 1]</label>
+                <label className="block text-xs font-bold uppercase text-slate-600 mb-1">Case Type</label>
                 <select
                   className="w-full p-2 border rounded-lg text-sm"
                   value={formData.caseType}
                   onChange={(e) => setFormData({ ...formData, caseType: e.target.value })}
                 >
-                  <option>Harassment[cite: 1]</option>
-                  <option>Threats[cite: 1]</option>
-                  <option>Theft[cite: 1]</option>
-                  <option>Land Dispute[cite: 1]</option>
+                  <option>Harassment</option>
+                  <option>Threats</option>
+                  <option>Theft</option>
+                  <option>Land Dispute</option>
                   <option>Other Atrocity</option>
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-bold uppercase text-slate-600 mb-1">Victim Name[cite: 1]</label>
+                <label className="block text-xs font-bold uppercase text-slate-600 mb-1">Victim Name</label>
                 <input
                   type="text"
                   required
@@ -203,7 +201,7 @@ export default function OfficerDashboard() {
               </div>
             </div>
             <div>
-              <label className="block text-xs font-bold uppercase text-slate-600 mb-1">Registered Phone Number (OTP Verified)[cite: 1]</label>
+              <label className="block text-xs font-bold uppercase text-slate-600 mb-1">Registered Phone Number (OTP Verified)</label>
               <input
                 type="tel"
                 required
@@ -221,14 +219,14 @@ export default function OfficerDashboard() {
                 onChange={(e) => setFormData({ ...formData, hasSmartphone: e.target.checked })}
               />
               <label htmlFor="smartphone" className="text-sm font-medium text-slate-700">
-                Victim has active smartphone with internet (if unchecked, automated IVRS fallback activates)[cite: 1]
+                Victim has active smartphone with internet (if unchecked, automated IVRS fallback activates)
               </label>
             </div>
             <button
               type="submit"
               className="w-full mt-4 bg-blue-900 text-white font-semibold py-3 rounded-lg hover:bg-blue-800 transition"
             >
-              Generate Case ID & Register Victim[cite: 1]
+              Generate Case ID & Register Victim
             </button>
           </form>
         </div>
@@ -237,7 +235,6 @@ export default function OfficerDashboard() {
       {/* TAB 3: HIERARCHICAL ANALYTICS */}
       {activeTab === 'analytics' && (
         <div>
-          {/* Level Switcher */}
           <div className="bg-white p-3 rounded-lg shadow-sm border border-slate-200 mb-6 flex items-center gap-4">
             <span className="text-sm font-bold text-slate-700">Hierarchical Drilldown:</span>
             <div className="inline-flex rounded-md shadow-sm">
@@ -262,7 +259,6 @@ export default function OfficerDashboard() {
             </div>
           </div>
 
-          {/* Metric Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
             <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
               <p className="text-xs uppercase font-bold text-slate-500">Total Registered Cases</p>
@@ -285,11 +281,11 @@ export default function OfficerDashboard() {
           <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
             <h3 className="text-base font-bold text-slate-800 mb-2">Aggregated View: {currentStats.label}</h3>
             <p className="text-xs text-slate-500 mb-4">
-              Aggregated metrics update dynamically based on the hierarchy level without splitting into disconnected dashboards.
+              Aggregated metrics update dynamically across administrative tiers without manual re-compilation.
             </p>
             <div className="w-full bg-slate-100 rounded-full h-4 mb-2">
               <div
-                className="bg-red-500 h-4 rounded-full"
+                className="bg-red-500 h-4 rounded-full transition-all duration-300"
                 style={{ width: `${(currentStats.highRisk / currentStats.activeCases) * 100}%` }}
               ></div>
             </div>
