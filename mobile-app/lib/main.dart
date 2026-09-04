@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/checkin/checkin_screen.dart';
+import 'screens/assistance_screen.dart';
 
 void main() {
   runApp(const AbhayaVictimApp());
@@ -103,6 +104,7 @@ class _MainContainerState extends State<MainContainer> {
               );
             },
           ),
+          AssistanceScreen(caseId: _caseId),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -111,6 +113,7 @@ class _MainContainerState extends State<MainContainer> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Overview'),
           BottomNavigationBarItem(icon: Icon(Icons.sentiment_satisfied_alt), label: 'Check-in'),
+          BottomNavigationBarItem(icon: Icon(Icons.handshake_outlined), label: 'Assistance'),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
